@@ -7,7 +7,7 @@ A complete e-commerce web service built with **Go (Gin)** backend and **React** 
 ### **🎯 Primary Links (Click to Test)**
 - **🚀 Live Frontend**: [https://shop-cart-pi-bice.vercel.app/](https://shop-cart-pi-bice.vercel.app/)
 - **🔧 Live Backend API**: [https://shop-cart-production.up.railway.app](https://shop-cart-production.up.railway.app)
-- **📹 Demo Video**: [https://drive.google.com/file/d/15LiBifVBaYWgMypvJNIfeRiXlOFeomFR/view?usp=sharing](https://drive.google.com/file/d/15LiBifVBaYWgMypvJNIfeRiXlOFeomFR/view?usp=sharing)
+- **📹 Demo Video**: [https://drive.google.com/file/d/1zb7pLGY5gmfa2OzqoSPOTC6W15do4bih/view?usp=sharing](https://drive.google.com/file/d/1zb7pLGY5gmfa2OzqoSPOTC6W15do4bih/view?usp=sharing)
 
 ### **🔑 Demo Credentials**
 - **Username**: `admin`
@@ -455,7 +455,7 @@ For issues or questions:
 ### **🎯 Primary Links (Click to Test)**
 - **🚀 Live Frontend**: [https://shop-cart-pi-bice.vercel.app/](https://shop-cart-pi-bice.vercel.app/)
 - **🔧 Live Backend API**: [https://shop-cart-production.up.railway.app](https://shop-cart-production.up.railway.app)
-- **📹 Demo Video**: [https://drive.google.com/file/d/15LiBifVBaYWgMypvJNIfeRiXlOFeomFR/view?usp=sharing](https://drive.google.com/file/d/15LiBifVBaYWgMypvJNIfeRiXlOFeomFR/view?usp=sharing)
+- **📹 Demo Video**: [https://drive.google.com/file/d/1zb7pLGY5gmfa2OzqoSPOTC6W15do4bih/view?usp=sharing](https://drive.google.com/file/d/1zb7pLGY5gmfa2OzqoSPOTC6W15do4bih/view?usp=sharing)
 
 ### **🔑 Demo Credentials**
 - **Username**: `admin`
