@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.VITE_API_URL || 'http://localhost:8080';
+const API_BASE_URL = 'https://shop-cart-production.up.railway.app';
 
 export interface User {
   id: number;
