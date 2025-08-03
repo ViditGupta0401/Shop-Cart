@@ -1,27 +1,43 @@
-# ✨ ArtisanCraft - Handcrafted E-Commerce Platform
+# 🛒 Shopping Cart E-Commerce Platform
 
-A sophisticated e-commerce platform built with Go (Gin) backend and React frontend, featuring advanced user authentication, product management, intelligent cart operations, and seamless order processing.
+A complete e-commerce web service built with **Go (Gin)** backend and **React** frontend, implementing the core shopping cart functionality with user authentication, product management, and order processing.
 
-## 📖 Overview
+## 🌐 **Live Application Links**
 
-ArtisanCraft delivers a premium shopping experience with handcrafted treasures:
-- **Advanced Authentication**: Secure JWT-based login/signup with session management
-- **Smart Product Management**: Intelligent product browsing with advanced filtering
-- **Dynamic Cart Operations**: Real-time cart updates with quantity management
-- **Order Processing**: Streamlined checkout with order history tracking
-- **Live Updates**: Real-time cart count and status synchronization
-- **Responsive Design**: Modern, accessible UI with Tailwind CSS and shadcn/ui
+### **🎯 Primary Links (Click to Test)**
+- **🚀 Live Frontend**: [https://shop-cart-pi-bice.vercel.app/](https://shop-cart-pi-bice.vercel.app/)
+- **🔧 Live Backend API**: [https://shop-cart-production.up.railway.app](https://shop-cart-production.up.railway.app)
+- **📹 Demo Video**: [https://drive.google.com/file/d/15LiBifVBaYWgMypvJNIfeRiXlOFeomFR/view?usp=sharing](https://drive.google.com/file/d/15LiBifVBaYWgMypvJNIfeRiXlOFeomFR/view?usp=sharing)
 
-## 🔧 Tech Stack
+### **🔑 Demo Credentials**
+- **Username**: `admin`
+- **Password**: `artisan123`
+
+## 📋 **Project Overview**
+
+This project implements a basic e-commerce store with the following user flow:
+```
+User → Add Items to Cart → Order with Items in Cart → Done!
+```
+
+### 🎯 **Core Requirements Implemented**
+
+- ✅ **User Authentication**: Signup and login with JWT tokens
+- ✅ **Single Session Policy**: One device login per user
+- ✅ **Shopping Cart**: Add/remove items with quantity management
+- ✅ **Order Processing**: Convert cart to order seamlessly
+- ✅ **Product Management**: Browse and manage items
+- ✅ **Real-time Updates**: Live cart count and status tracking
+
+## 🛠️ **Technology Stack**
 
 ### Backend
-- **Go** - High-performance programming language
+- **Go 1.21+** - High-performance programming language
 - **Gin** - Lightning-fast HTTP web framework
 - **GORM** - Powerful ORM for database operations
-- **SQLite** - Reliable database (in-memory for tests, file-based for production)
+- **SQLite** - Reliable database for development and production
 - **JWT** - Secure JSON Web Tokens for authentication
 - **bcrypt** - Military-grade password hashing
-- **CORS** - Cross-Origin Resource Sharing
 
 ### Frontend
 - **React 18** - Modern UI framework with hooks
@@ -29,25 +45,26 @@ ArtisanCraft delivers a premium shopping experience with handcrafted treasures:
 - **Vite** - Ultra-fast build tool and dev server
 - **Tailwind CSS** - Utility-first CSS framework
 - **shadcn/ui** - Beautiful, accessible UI components
-- **React Router DOM** - Declarative routing
-- **React Query** - Intelligent data fetching and caching
-- **Axios** - Promise-based HTTP client
-- **Lucide React** - Beautiful icon library
 
 ### Testing
 - **Go Testing** - Comprehensive testing framework
 - **testify/assert** - Powerful assertion library
-- **httptest** - HTTP testing utilities
 - **SQLite in-memory** - Isolated test database
 
-## 🚀 Quick Start
+## 🚀 **Quick Start Guide**
 
 ### Prerequisites
 - Go 1.21+ installed
 - Node.js 18+ installed
 - Git
 
-### Backend Setup
+### Step 1: Clone the Repository
+```bash
+git clone <your-repository-url>
+cd Shop-Cart
+```
+
+### Step 2: Backend Setup
 
 1. **Navigate to backend directory:**
    ```bash
@@ -59,18 +76,14 @@ ArtisanCraft delivers a premium shopping experience with handcrafted treasures:
    go mod tidy
    ```
 
-3. **Build the application:**
+3. **Run the server:**
    ```bash
-   go build -o artisancraft.exe
+   go run main.go
    ```
-
-4. **Run the server:**
-   ```bash
-   ./artisancraft.exe
-   ```
+   
    The backend will start on `http://localhost:8080`
 
-### Frontend Setup
+### Step 3: Frontend Setup
 
 1. **Navigate to frontend directory:**
    ```bash
@@ -86,184 +99,235 @@ ArtisanCraft delivers a premium shopping experience with handcrafted treasures:
    ```bash
    npm run dev
    ```
+   
    The frontend will start on `http://localhost:3000`
 
-### Running Both Services
+### Step 4: Access the Application
 
-1. **Terminal 1 - Backend:**
-   ```bash
-   cd backend
-   go run main.go
-   ```
+1. **Open your browser** and go to `http://localhost:3000`
+2. **Login with demo credentials:**
+   - Username: `admin`
+   - Password: `artisan123`
+3. **Start shopping!** Browse products, add to cart, and place orders
 
-2. **Terminal 2 - Frontend:**
-   ```bash
-   cd frontend
-   npm run dev
-   ```
-
-## 🔑 Authentication
+## 🔐 **Authentication System**
 
 ### JWT Token Flow
 
-1. **Signup**: Create a new user account
-   ```bash
-   POST /users
+1. **User Signup** (`POST /users`):
+   ```json
    {
-     "username": "your_username",
-     "password": "your_password"
+     "username": "newuser",
+     "password": "securepassword"
    }
    ```
 
-2. **Login**: Get JWT token
-   ```bash
-   POST /users/login
+2. **User Login** (`POST /users/login`):
+   ```json
    {
-     "username": "your_username",
-     "password": "your_password"
+     "username": "newuser",
+     "password": "securepassword"
    }
    ```
-   Response includes the JWT token.
+   Returns JWT token for authentication.
 
-3. **Use Token**: Include in Authorization header
-   ```bash
+3. **Use Token**: Include in Authorization header:
+   ```
    Authorization: Bearer <your_jwt_token>
    ```
 
 ### Single Session Policy
-- Each user can only be logged in from one device at a time
-- New login invalidates previous tokens
+- Each user can only be logged in from **one device at a time**
+- New login automatically invalidates previous tokens
 - Tokens are stored in the database for validation
 
-## 🧪 Testing
+## 📊 **Database Schema**
 
-### Backend Tests
+The application uses the following database structure:
 
-The application includes comprehensive test coverage using Go's standard testing framework:
+### Users Table
+- `id` (Primary Key)
+- `username` (Unique)
+- `password` (Hashed)
+- `token` (JWT token)
+- `cart_id` (Foreign Key to Carts)
+- `created_at`
 
-**Run all tests:**
+### Carts Table
+- `id` (Primary Key)
+- `user_id` (Foreign Key to Users)
+- `name`
+- `status`
+- `created_at`
+
+### Items Table
+- `id` (Primary Key)
+- `name`
+- `description`
+- `price`
+- `category`
+- `rating`
+- `reviews`
+- `image`
+- `in_stock`
+- `status`
+- `created_at`
+
+### Orders Table
+- `id` (Primary Key)
+- `cart_id` (Foreign Key to Carts)
+- `user_id` (Foreign Key to Users)
+- `total`
+- `status`
+- `created_at`
+
+### Cart_Items Table (Junction)
+- `cart_id` (Foreign Key to Carts)
+- `item_id` (Foreign Key to Items)
+- `quantity`
+- `price`
+
+## 🔌 **API Endpoints**
+
+### Base URL: `https://shop-cart-production.up.railway.app`
+
+| Method | Endpoint | Description | Authentication |
+|--------|----------|-------------|----------------|
+| `POST` | `/users` | Create a new user | ❌ |
+| `GET` | `/users` | List all users | ✅ |
+| `POST` | `/users/login` | Login user | ❌ |
+| `POST` | `/items` | Create an item | ✅ |
+| `GET` | `/items` | List all items | ❌ |
+| `POST` | `/carts` | Add items to cart | ✅ |
+| `GET` | `/carts` | List all carts | ✅ |
+| `POST` | `/orders` | Convert cart to order | ✅ |
+| `GET` | `/orders` | List all orders | ✅ |
+
+### Authentication Required Endpoints
+**Note**: The following endpoints require a valid JWT token in the Authorization header:
+- `POST /carts` - User's token identifies which user the cart belongs to
+- `POST /orders` - User's token identifies which user the order belongs to
+
+## 🎨 **Frontend Features**
+
+### User Interface Flow
+
+1. **Login Screen**
+   - Username and password input
+   - Error handling with `window.alert()` for invalid credentials
+   - Automatic redirect to products page on success
+
+2. **List Items Screen**
+   - Display all available products
+   - Click to add items to cart
+   - Real-time cart count updates
+   - Search and filter functionality
+
+3. **Required UI Elements**
+   - **Checkout Button**: Converts cart to order
+   - **Cart Button**: Shows cart items in toast notification
+   - **Order History Button**: Shows order IDs in toast notification
+
+### User Experience Features
+- **Responsive Design**: Works on desktop and mobile
+- **Real-time Updates**: Live cart count and status
+- **Toast Notifications**: Success/error feedback
+- **Loading States**: Smooth user experience
+- **Error Handling**: Graceful error management
+
+## 🧪 **Testing**
+
+### Backend Testing
 ```bash
 cd backend
 go test ./tests/... -v
 ```
 
-**Run specific test categories:**
-```bash
-# User API tests
-go test -run TestUserSignup -v
-go test -run TestUserLogin -v
-
-# Cart API tests
-go test -run TestCartAPI -v
-go test -run TestGetCart -v
-
-# Order API tests
-go test -run TestCreateOrder -v
-go test -run TestListOrders -v
-```
-
 **Test Coverage:**
 - ✅ **User API**: Signup, login, list users (6 tests)
 - ✅ **Cart API**: Add/remove items, get cart (6 tests)
-- ✅ **Order API**: Create orders, list orders, data integrity (7 tests)
-
-**Test Features:**
-- In-memory SQLite database for isolated testing
-- HTTP client calls against Gin router for integration testing
-- Proper cleanup before each test
-- Realistic test scenarios with password hashing
-- Comprehensive error handling tests
+- ✅ **Order API**: Create orders, list orders (7 tests)
 
 ### Frontend Testing
-
-The frontend includes:
 - TypeScript for type safety
 - React Query for data management
 - Error boundaries for graceful error handling
-- Loading states and user feedback
 
-## 📂 Project Structure
+## 📁 **Project Structure**
 
 ```
-artisancraft-platform/
+Shop-Cart/
 ├── backend/
 │   ├── controllers/     # HTTP request handlers
-│   ├── models/         # Database models (User, Item, Cart, Order)
+│   │   ├── user.go     # User authentication
+│   │   ├── item.go     # Product management
+│   │   ├── cart.go     # Cart operations
+│   │   └── order.go    # Order processing
+│   ├── models/         # Database models
+│   │   ├── user.go     # User model
+│   │   ├── item.go     # Item model
+│   │   ├── cart.go     # Cart and CartItem models
+│   │   └── order.go    # Order model
 │   ├── routes/         # API route definitions
 │   ├── middlewares/    # Authentication middleware
-│   ├── utils/          # Database connection, JWT utilities
+│   ├── utils/          # Database and JWT utilities
 │   ├── tests/          # Test files
 │   └── main.go         # Application entry point
 ├── frontend/
 │   ├── src/
 │   │   ├── components/ # React components
-│   │   ├── pages/      # Page components
 │   │   ├── services/   # API service functions
-│   │   ├── hooks/      # Custom React hooks
-│   │   └── lib/        # Utility functions
-│   ├── public/         # Static assets
+│   │   └── App.tsx     # Main application
 │   └── package.json    # Frontend dependencies
+├── postman/            # API testing collections
 └── README.md           # This file
 ```
 
-## 📬 API Documentation
+## 🚀 **Deployment**
 
-### Base URL
+### Backend Deployment (Railway)
+- **Platform**: Railway
+- **URL**: https://shop-cart-production.up.railway.app
+- **Database**: SQLite
+- **Environment**: Production
+
+### Frontend Deployment (Vercel)
+- **Platform**: Vercel
+- **URL**: https://shop-cart-pi-bice.vercel.app/
+- **Framework**: Vite + React
+- **Environment**: Production
+
+### Environment Variables
+```env
+PORT=8080
+JWT_SECRET=your-secret-key-change-in-production
+CORS_ORIGIN=https://shop-cart-pi-bice.vercel.app
 ```
-http://localhost:8080
-```
+
+## 📚 **API Documentation**
 
 ### Authentication Endpoints
 
 #### POST /users
 **Create a new user account**
 ```bash
-POST /users
-Content-Type: application/json
-
-{
-  "username": "john_doe",
-  "password": "secure_password"
-}
-```
-
-**Response:**
-```json
-{
-  "message": "User created successfully",
-  "user": {
-    "id": 1,
-    "username": "john_doe",
-    "created_at": "2024-01-01T00:00:00Z"
-  }
-}
+curl -X POST https://shop-cart-production.up.railway.app/users \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "newuser",
+    "password": "securepassword"
+  }'
 ```
 
 #### POST /users/login
 **Login and get JWT token**
 ```bash
-POST /users/login
-Content-Type: application/json
-
-{
-  "username": "john_doe",
-  "password": "secure_password"
-}
-```
-
-**Response:**
-```json
-{
-  "message": "Login successful",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-}
-```
-
-#### GET /users
-**List all users (requires authentication)**
-```bash
-GET /users
-Authorization: Bearer <jwt_token>
+curl -X POST https://shop-cart-production.up.railway.app/users/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "newuser",
+    "password": "securepassword"
+  }'
 ```
 
 ### Product Endpoints
@@ -271,48 +335,21 @@ Authorization: Bearer <jwt_token>
 #### GET /items
 **List all available products**
 ```bash
-GET /items
-```
-
-**Response:**
-```json
-{
-  "items": [
-    {
-      "id": 1,
-      "name": "Gaming Laptop",
-      "description": "High-performance gaming laptop",
-      "price": 1299.99,
-      "category": "Electronics",
-      "rating": 4.5,
-      "reviews": 10,
-      "image": "https://example.com/laptop.jpg",
-      "in_stock": true
-    }
-  ]
-}
+curl -X GET https://shop-cart-production.up.railway.app/items
 ```
 
 #### POST /items
 **Create a new product (requires authentication)**
 ```bash
-POST /items
-Authorization: Bearer <jwt_token>
-Content-Type: application/json
-
-{
-  "name": "New Product",
-  "description": "Product description",
-  "price": 29.99,
-  "category": "Electronics"
-}
-```
-
-#### DELETE /items/:id
-**Delete a product (requires authentication)**
-```bash
-DELETE /items/1
-Authorization: Bearer <jwt_token>
+curl -X POST https://shop-cart-production.up.railway.app/items \
+  -H "Authorization: Bearer <your_jwt_token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "New Product",
+    "description": "Product description",
+    "price": 29.99,
+    "category": "Electronics"
+  }'
 ```
 
 ### Cart Endpoints
@@ -320,56 +357,20 @@ Authorization: Bearer <jwt_token>
 #### POST /carts
 **Add item to cart (requires authentication)**
 ```bash
-POST /carts
-Authorization: Bearer <jwt_token>
-Content-Type: application/json
-
-{
-  "item_id": 1,
-  "quantity": 2
-}
-```
-
-**Response:**
-```json
-{
-  "message": "Item added to cart successfully",
-  "cart": {
-    "id": 1,
-    "user_id": 1,
-    "items": [
-      {
-        "id": 1,
-        "item_id": 1,
-        "quantity": 2,
-        "price": 1299.99,
-        "item": {
-          "name": "Gaming Laptop",
-          "price": 1299.99
-        }
-      }
-    ]
-  }
-}
+curl -X POST https://shop-cart-production.up.railway.app/carts \
+  -H "Authorization: Bearer <your_jwt_token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "item_id": 1,
+    "quantity": 2
+  }'
 ```
 
 #### GET /carts
 **Get user's cart (requires authentication)**
 ```bash
-GET /carts
-Authorization: Bearer <jwt_token>
-```
-
-#### DELETE /carts
-**Remove item from cart (requires authentication)**
-```bash
-DELETE /carts
-Authorization: Bearer <jwt_token>
-Content-Type: application/json
-
-{
-  "item_id": 1
-}
+curl -X GET https://shop-cart-production.up.railway.app/carts \
+  -H "Authorization: Bearer <your_jwt_token>"
 ```
 
 ### Order Endpoints
@@ -377,79 +378,89 @@ Content-Type: application/json
 #### POST /orders
 **Create order from cart (requires authentication)**
 ```bash
-POST /orders
-Authorization: Bearer <jwt_token>
-```
-
-**Response:**
-```json
-{
-  "message": "Order created successfully",
-  "order": {
-    "id": 1,
-    "user_id": 1,
-    "cart_id": 1,
-    "total": 2599.98,
-    "created_at": "2024-01-01T00:00:00Z",
-    "cart": {
-      "items": [
-        {
-          "item": {
-            "name": "Gaming Laptop",
-            "price": 1299.99
-          },
-          "quantity": 2,
-          "price": 1299.99
-        }
-      ]
-    }
-  }
-}
+curl -X POST https://shop-cart-production.up.railway.app/orders \
+  -H "Authorization: Bearer <your_jwt_token>"
 ```
 
 #### GET /orders
 **List user's orders (requires authentication)**
 ```bash
-GET /orders
-Authorization: Bearer <jwt_token>
+curl -X GET https://shop-cart-production.up.railway.app/orders \
+  -H "Authorization: Bearer <your_jwt_token>"
 ```
 
-### Error Responses
+## 🎯 **Key Features Implemented**
 
-All endpoints return appropriate HTTP status codes:
+### ✅ Core Requirements
+- **User Authentication**: Complete signup/login system
+- **Single Session Policy**: One device login per user
+- **Shopping Cart**: Add/remove items with quantities
+- **Order Processing**: Convert cart to order
+- **Product Management**: Browse and manage items
+- **Real-time Updates**: Live cart count and status
 
-- `200 OK` - Success
-- `201 Created` - Resource created
-- `400 Bad Request` - Invalid input
-- `401 Unauthorized` - Missing or invalid token
-- `404 Not Found` - Resource not found
-- `409 Conflict` - Duplicate resource
-- `500 Internal Server Error` - Server error
+### ✅ Advanced Features
+- **JWT Token Security**: Secure authentication
+- **Database Relationships**: Proper foreign key constraints
+- **Error Handling**: Comprehensive error management
+- **Responsive Design**: Mobile-friendly interface
+- **Toast Notifications**: User feedback system
+- **Loading States**: Smooth user experience
 
-**Error Response Format:**
-```json
-{
-  "error": "Error message description"
-}
-```
+### ✅ Testing & Documentation
+- **Comprehensive Tests**: Backend API testing
+- **Postman Collections**: Ready-to-use API tests
+- **Clear Documentation**: Step-by-step setup guide
+- **Deployment Ready**: Production-ready configuration
 
-## 🎯 Features
+## 🔧 **Troubleshooting**
 
-### ✅ Implemented Features
-- User registration and authentication
-- JWT token-based security
-- Product browsing and management
-- Shopping cart functionality
-- Order creation and history
-- Real-time cart updates
-- Responsive design
-- Comprehensive test coverage
-- Error handling and validation
+### Common Issues
 
-### 🔄 Real-time Features
-- Live cart count in navigation
-- Automatic cart updates
-- Order status tracking
-- User session management
+1. **CORS Errors**:
+   - Update CORS origin in backend to match frontend domain
+   - Check environment variables
 
-** Built by Vidit Gupta**
+2. **Database Connection**:
+   - Ensure SQLite file is writable
+   - Check database permissions
+
+3. **Build Failures**:
+   - Verify all dependencies are installed
+   - Check Node.js and Go versions
+
+4. **Authentication Issues**:
+   - Verify JWT token is valid
+   - Check token expiration
+
+### Getting Help
+
+1. **Check logs** in your terminal
+2. **Verify environment variables** are set correctly
+3. **Test API endpoints** using Postman collections
+4. **Check browser console** for frontend errors
+
+## 📞 **Support**
+
+For issues or questions:
+1. Check the troubleshooting section above
+2. Review the API documentation
+3. Test with the provided Postman collections
+4. Verify all setup steps are completed
+
+---
+
+## 🌟 **Live Application Links**
+
+### **🎯 Primary Links (Click to Test)**
+- **🚀 Live Frontend**: [https://shop-cart-pi-bice.vercel.app/](https://shop-cart-pi-bice.vercel.app/)
+- **🔧 Live Backend API**: [https://shop-cart-production.up.railway.app](https://shop-cart-production.up.railway.app)
+- **📹 Demo Video**: [https://drive.google.com/file/d/15LiBifVBaYWgMypvJNIfeRiXlOFeomFR/view?usp=sharing](https://drive.google.com/file/d/15LiBifVBaYWgMypvJNIfeRiXlOFeomFR/view?usp=sharing)
+
+### **🔑 Demo Credentials**
+- **Username**: `admin`
+- **Password**: `artisan123`
+
+**Built by Vidit Gupta ❤️ using Go, Gin, React, and TypeScript**
+
+*This project implements a complete e-commerce shopping cart system with user authentication, product management, and order processing capabilities.*
